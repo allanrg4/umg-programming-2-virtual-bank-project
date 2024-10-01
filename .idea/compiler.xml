@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="atm" target="21" />
+      <module name="atm.main" target="21" />
+      <module name="atm.test" target="21" />
+      <module name="manager" target="21" />
+      <module name="manager.main" target="21" />
+      <module name="manager.test" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
