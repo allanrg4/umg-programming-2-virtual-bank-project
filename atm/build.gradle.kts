@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-group = "org.umg"
+group = "org.atm"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -15,6 +15,12 @@ dependencies {
 
     implementation("io.github.cdimascio:dotenv-java:3.0.0")
     implementation("mysql:mysql-connector-java:8.0.28")
+
+    implementation(
+        fileTree("../core/build/libs") {
+            include("*.jar")
+        }
+    )
 }
 
 tasks.test {
