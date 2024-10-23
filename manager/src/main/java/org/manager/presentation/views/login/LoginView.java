@@ -43,7 +43,12 @@ public class LoginView extends JFrame {
                 login.execute(loginParams);
                 JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso", "Inicio de Sesión", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Inicio de sesión fallido", "Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
+                System.out.println(ex.getMessage());
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Inicio de sesión fallido",
+                        "Inicio de Sesión",
+                        JOptionPane.ERROR_MESSAGE);
             }
         });
     }

@@ -15,12 +15,12 @@ public class DBConfig {
     private DBConfig() {
         var envs = Dotenv.load();
 
-        engine = envs.get("DB_ENGINE");
-        host = envs.get("DB_HOST");
-        port = envs.get("DB_PORT");
-        user = envs.get("DB_USER");
-        password = envs.get("DB_PASSWORD");
-        database = envs.get("DB_NAME");
+        this.engine = envs.get("DB_ENGINE");
+        this.host = envs.get("DB_HOST");
+        this.port = envs.get("DB_PORT");
+        this.user = envs.get("DB_USERNAME");
+        this.password = envs.get("DB_PASSWORD");
+        this.database = envs.get("DB_NAME");
     }
 
     public static DBConfig getInstance() {
