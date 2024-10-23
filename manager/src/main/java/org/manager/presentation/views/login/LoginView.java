@@ -3,14 +3,13 @@ package org.manager.presentation.views.login;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import org.manager.data.repositories.AuthRepositoryImpl;
-import org.manager.domain.params.LoginParams;
-import org.manager.domain.use_cases.Login;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class LoginView extends JFrame {
+    private final LoginController controller;
+
     private JPanel contentPane;
     private JTextField usernameField;
     private JPasswordField passwordField;
@@ -32,25 +31,7 @@ public class LoginView extends JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
-        this.loginButton.addActionListener(e -> {
-            final var username = this.usernameField.getText();
-            final var password = new String(this.passwordField.getPassword());
-
-            final var login = new Login(new AuthRepositoryImpl());
-            final var loginParams = new LoginParams(username, password);
-
-            try {
-                login.execute(loginParams);
-                JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso", "Inicio de Sesión", JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Inicio de sesión fallido",
-                        "Inicio de Sesión",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-        });
+        this.controller = new LoginController(this);
     }
 
     /**
@@ -108,4 +89,15 @@ public class LoginView extends JFrame {
         return contentPane;
     }
 
+    public JTextField getUsernameField() {
+        return usernameField;
+    }
+
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public JButton getLoginButton() {
+        return loginButton;
+    }
 }
