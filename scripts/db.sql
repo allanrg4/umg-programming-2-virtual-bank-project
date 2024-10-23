@@ -159,7 +159,17 @@ VALUES (1, NULL, 1500.00, 'DEPOSIT', 'Salary Deposit', 'Monthly salary deposit f
 
 -- Queries
 
--- 1. Get account balance
+-- Find User by Username and Account Pin
+SELECT accounts.id
+FROM accounts
+         JOIN users on accounts.user_id = users.id
+WHERE users.username = 'jdoe'
+  AND accounts.pin = '1234'
+  AND NOT users.deleted
+  AND NOT accounts.deleted
+LIMIT 1;
+
+-- Get account balance
 SELECT `account_id`,
        SUM(
                CASE
