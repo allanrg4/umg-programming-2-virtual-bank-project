@@ -22,12 +22,12 @@ public class Engine {
 
         this.router.setOnRouteChange((route) -> {
             frame.getContentPane().removeAll();
-            frame.add(route.view().render(this.router));
+            frame.setContentPane(route.view().render(this.router));
             frame.revalidate();
             frame.repaint();
         });
 
-        this.router.navigate("home");
+        this.router.navigate(this.router.getInitial());
         frame.setVisible(true);
     }
 }

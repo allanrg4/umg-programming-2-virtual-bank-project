@@ -1,31 +1,20 @@
 package org.core.orm;
 
-import java.util.List;
+import org.apache.commons.dbutils.DbUtils;
+import org.core.config.DBConfig;
 
-public abstract class Manager<E extends Entity> implements ManagerConnection {
-    final String table;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-    protected Manager(String name) {
-        this.table = name;
-    }
+public interface Manager {
+    default Connection connect() throws SQLException {
+        DbUtils.loadDriver("com.mysql.cj.jdbc.Driver");
 
-    public List<E> getAll() {
-//        final var entries = new ArrayList<E>();
-//        final var query = "SELECT * FROM " + this.table;
-//
-//        try (var conn = this.connect()) {
-//            var stmt = conn.createStatement();
-//            var rs = stmt.executeQuery(query);
-//
-//            while (rs.next()) {
-//                @SuppressWarnings("unchecked")
-//                var entry = (E) E.from(rs);
-//                entries.add(entry);
-//            }
-//        } catch (Exception ignored) {
-//        }
-//
-//        return entries;
-        return null;
+        final var config = DBConfig.getInstance();
+        return DriverManager.getConnection(
+                config.getConnectionUrl(),
+                config.getUser(),
+                config.getPassword());
     }
 }

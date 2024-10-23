@@ -7,13 +7,19 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class Router {
-    private final List<Route> routes;
-    private final List<String> history = new ArrayList<String>();
+    private final String initial;
+    private final List<Route> routes = new ArrayList<>();
+    private final List<String> history = new ArrayList<>();
     private Route current;
     private Consumer<Route> onRouteChange;
 
-    public Router(List<Route> routes) {
-        this.routes = routes;
+    public Router(String initial, List<Route> routes) {
+        this.initial = initial;
+        this.routes.addAll(routes);
+    }
+
+    public String getInitial() {
+        return initial;
     }
 
     private Route findRoute(String name) throws RouteNotFoundException {

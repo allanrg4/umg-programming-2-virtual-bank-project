@@ -1,14 +1,14 @@
 package org.manager;
 
-import org.core.data.Entity;
+import org.manager.presentation.views.login.LoginView;
+
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-    }
-}
-
-class ClientEntity extends Entity {
-    public ClientEntity() {
-        super("client");
+        SwingUtilities.invokeLater(() -> {
+            final var loginView = new LoginView();
+            loginView.setVisible(true);
+        });
     }
 }
